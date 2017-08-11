@@ -1,0 +1,12 @@
+---
+  - name: pull gitlab image
+    command: docker pull harbor.ctproject5.com/basic/gitlab:8.15.3
+  - name: pull postgresql image
+    command: docker pull harbor.ctproject5.com/basic/postgresql:9.6
+  - name: pull redis image
+    command: docker pull harbor.ctproject5.com/basic/redis:latest
+  - name: copy docker-compose file
+    copy: src=gitlab-docker-compose.yml dest=/root/docker-compose.yml
+  - name: start gitlab service
+    command: docker-compose up -d
+

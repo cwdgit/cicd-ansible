@@ -1,0 +1,8 @@
+---
+  - name: pull jenkins image
+    command: docker pull harbor.ctproject5.com/library/jenkins:1.0.1
+  - name: copy  docker-compose.yml
+    copy: src=jenkins-docker-compose.yml dest=/root/docker-compose.yml
+  - name: start jenkins container
+    command: docker-compose up -d
+

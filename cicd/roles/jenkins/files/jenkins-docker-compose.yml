@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+  jenkins:
+    restart: always
+    image: harbor.ctproject5.com/basic/jenkins:1.0.1
+    ports:
+    - "8000:8080"
+    - "10022:22"
+    - "50000:50000"    
+    volumes:
+    - /srv/docker/jenkins/jenkins_home:/var/jenkins_home:Z
+    
+
+
+ openssl req \
+-newkey rsa:4096 -nodes -sha256 -keyout registry_ctproject5_com.key \
+-x509 -days 730 -out registry_ctproject5_com.crt

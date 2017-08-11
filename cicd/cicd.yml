@@ -1,0 +1,19 @@
+---
+- hosts: all
+  remote_user: root
+  gather_facts: false
+
+  roles:
+      - role: docker
+
+- hosts: 172.16.10.54
+  remote_user: root
+  gather_facts: false   
+  roles:
+      - role: jenkins
+
+- hosts: 172.16.10.53
+  remote_user: root
+  gather_facts: false  
+  roles:
+      - role: gitlab

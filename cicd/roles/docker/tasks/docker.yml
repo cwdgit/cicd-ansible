@@ -1,0 +1,22 @@
+---
+  - name: update
+    command: yum update -y
+  - name: install docker
+    yum: pkg=docker state=latest
+    notify:
+        - restart docker
+  - name: build certs directory
+    file: path=/etc/docker/certs.d/harbor.ctproject5.com state=directory
+  - name: copy certs.d file
+    copy: src=harbor_ctproject5_com.crt dest=/etc/docker/certs.d/harbor.ctproject5.com
+    notify:
+       - restart docker
+  - name: install epel-release
+    yum: pkg=epel-release state=latest
+  - name: install python-pip
+    yum: pkg=python-pip state=latest
+  - name: update the pip
+    command: pip install --upgrade pip
+  - name: install docker-compose
+    command: pip install docker-compose
+
